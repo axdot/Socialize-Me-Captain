@@ -1,19 +1,21 @@
 const { Schema, model, Types } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-
 const ReactionSchema = new Schema(
   {
     // set custom id to avoid confusion with parent thoughts's _id field
-    replyId: {
+    reactionId: {
       type: Schema.Types.ObjectId,
       default: () => new Types.ObjectId()
     },
-    replyBody: {
-      type: String
+    reactionBody: {
+      type: String,
+      required: true,
+      maxLength: 280
     },
-    writtenBy: {
-      type: String
+    username: {
+      type: String,
+      required: true
     },
     createdAt: {
       type: Date,
